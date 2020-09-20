@@ -1,1 +1,0 @@
-../../cfg/cfg.d/zz_idsidsids.pl
