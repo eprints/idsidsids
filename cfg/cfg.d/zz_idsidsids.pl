@@ -26,10 +26,10 @@ $c->add_dataset_field( "eprint",
 
 $c->{id_priorities} = {
 	doi => 1000,
-        issn_print => 800,
-	issn_online => 750,
-	issn => 700,
-        isbn => 600,
-	pmcid => 400,
-	pmid => 300,
+        isbn => 800,
+	pmcid => 600,
+	pmid => 500,
+	issn_print => 400,
+        issn_online => 350,
+        issn => 300,
 };
