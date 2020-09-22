@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='utf-8'?>
+<epm xmlns='http://eprints.org/ep2/data/2.0' id='https://ci.eprints-hosting.org/id/epm/idsidsids'>
+  <epmid>idsidsids</epmid>
+  <uri>https://ci.eprints-hosting.org/id/epm/idsidsids</uri>
+  <documents>
+    <document>
+      <files>
+        <file>
+          <filename>cfg.d/zz_idsidsids_renders.pl</filename>
+          <mime_type>text/plain</mime_type>
+          <hash>4dfe4b4aea63f8193b94fceff9beb705</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>3008</filesize>
+        </file>
+        <file>
+          <filename>cfg.d/zz_idsidsids_triggers.pl</filename>
+          <mime_type>text/plain</mime_type>
+          <hash>d22e9c46f50de28c8a98831641ebddbb</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>5633</filesize>
+        </file>
+        <file>
+          <filename>cfg.d/zz_idsidsids_validations.pl</filename>
+          <mime_type>text/plain</mime_type>
+          <hash>256563ef48a130758a880ab5a4fab69f</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>1957</filesize>
+        </file>
+        <file>
+          <filename>epm/idsidsids/cfg/cfg.d/zz_idsidsids.pl</filename>
+          <mime_type>text/plain</mime_type>
+          <hash>be15e55f4e2f2a4a22f8ea27eb043d24</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>656</filesize>
+        </file>
+        <file>
+          <filename>lang/en/phrases/zz_idsidsids.xml</filename>
+          <mime_type>application/xml</mime_type>
+          <hash>bede2acc5d98a9a7000d6fe780051b41</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>1370</filesize>
+        </file>
+        <file>
+          <filename>static/images/epm/icon_idsidsids.png</filename>
+          <mime_type>image/png</mime_type>
+          <hash>ebfa8e05919b1e47b1a974282b4f0a0b</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>12794</filesize>
+        </file>
+      </files>
+      <mime_type>image/png</mime_type>
+      <format>image</format>
+      <main>static/images/epm/icon_idsidsids.png</main>
+      <content>install</content>
+    </document>
+    <document>
+      <files>
+        <file>
+          <filename>static/images/epm/icon_idsidsids.png</filename>
+          <mime_type>image/png</mime_type>
+          <hash>ebfa8e05919b1e47b1a974282b4f0a0b</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>12794</filesize>
+        </file>
+      </files>
+      <format>image</format>
+      <main>static/images/epm/icon_idsidsids.png</main>
+      <content>coverimage</content>
+    </document>
+  </documents>
+  <version>0.1</version>
+  <creators>
+    <item>
+      <name>
+        <family>David R</family>
+        <given>Newman</given>
+      </name>
+      <id>drn@ecs.soton.ac.uk</id>
+    </item>
+  </creators>
+  <title>IDs IDs IDs</title>
+  <description>*** UNDER DEVELOPMENT ***
+Publications often have many IDs associated with them DOIs, ISBNs, ISSNs, PubMed IDs, etc.  Being able to store them is extensible way is preferable over having to create a new field each time you need to store a new type of ID.  
+
+IDs IDs IDs provides a compound multiple field to store IDs and their types.  It provides validators and renderers for different types of IDs and supports back and forward filling from existing ID fields such as id_number, isbn and issn.</description>
+  <requirements>EPrints 3.3+</requirements>
+  <home_page>https://github.com/eprints/idsidsids</home_page>
+  <icon>images/epm/icon_idsidsids.png</icon>
+</epm>
