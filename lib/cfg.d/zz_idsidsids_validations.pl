@@ -21,9 +21,6 @@ $c->{validate_id}->{issn} = sub {
         return $checkdigit eq substr( $value, -1 );
 };
 
-$c->{validate_id}->{issn_print} = $c->{validate_id}->{issn};
-$c->{validate_id}->{issn_online} = $c->{validate_id}->{issn};
-
 $c->{validate_id}->{isbn} = sub {
         my ( $session, $value ) = @_;
         $value = "" unless defined $value;
@@ -67,6 +64,9 @@ $c->{validate_id}->{pmid} = sub {
         my ( $session, $value ) = @_;
         $value = "" unless defined $value;
         return if $value =~ /^[0-9]+$/i;
-}
+};
 
-
+$c->{validate_id}->{undefined} = sub {
+	my ( $session, $value ) = @_;
+        return if defined $value;
+};	

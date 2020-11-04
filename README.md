@@ -8,11 +8,11 @@ This plugin provides a replacement for the default EPrints *id_number* (labelled
 
  * DOI
  * ISBN
- * ISSN (including print and online)
+ * ISSN
  * PubMed ID
  * PMCID
 
-This plugin will backfill the old ID fields (*id_number*, *isbn* and *issn*) where IDs of the right type are set. Where multiple IDs of the right types are set, a priority list (as defined in *cfg/cfg.d/zz_idsidsids.pl*) is used to determine which value to use.
+This plugin will backfill the old ID fields (*id_number*, *isbn* and *issn*) where IDs of the right type are set. Where multiple IDs of the right types are set, a priority list (as defined in *cfg/cfg.d/zz_idsidsids.pl*) is used to determine which value to use.  If multiple IDs have the same type, the first ID of the highest priority type will be used.
 
 This plugin will autopopulate the *ids* field with IDs from the old ID fields when an item is recommitted (see **Migrate existing records**) but only prior to IDs being added to the *ids* field.
 

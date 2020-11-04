@@ -8,13 +8,16 @@ $c->add_dataset_field( "eprint",
 			{ 
 				sub_name => 'id',
 				type => 'id',
-				required => 1
 			},
 			{
 				sub_name => 'id_type',
 				type => 'set',
-				options => [qw( doi isbn issn issn_print issn_online pmid pmcid )],
-				required => 1
+				options => [qw( doi isbn issn pmid pmcid )],
+			},
+			{
+				sub_name => 'id_note',
+                                type => 'text',
+                                maxlength => 32,
 			},
 		],
 		render_value => 'render_ids_with_types',
@@ -27,9 +30,8 @@ $c->add_dataset_field( "eprint",
 $c->{id_priorities} = {
 	doi => 1000,
         isbn => 800,
-	pmcid => 600,
+	issn => 600,
 	pmid => 500,
-	issn_print => 400,
-        issn_online => 350,
-        issn => 300,
+	pmcid => 400,
+	undefined => 0,
 };

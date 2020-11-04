@@ -22,14 +22,7 @@ $c->{render_id}->{issn} = sub {
 
 	return unless defined $value and $value ne "";
         my $label = $value;
-	if ( defined $opts{issn_format} )
-	{
-		$label = "ISSN (".$opts{issn_format}.") $value" if $label !~ /ISSN/gi;
-	}
-	else 
-	{
-		$label = "ISSN $value" if $label !~ /ISSN/gi;
-	}
+	$label = "ISSN $value" if $label !~ /ISSN/gi;
         $value =~ s/[^\dX]//gi;
         $value = uc $value;
 	$value = substr( $value, 0, 4 ) . "-" . substr( $value, 4, 4 );
@@ -38,9 +31,6 @@ $c->{render_id}->{issn} = sub {
         $link->appendChild( $session->make_text( $label ) );
         return $link;
 };
-
-$c->{render_id}->{issn_print} = $c->{render_id}->{issn};
-$c->{render_id}->{issn_online} = $c->{render_id}->{issn};
 
 $c->{render_id}->{pmid} = sub {
         my( $session, $value, %opts ) = @_;
@@ -65,6 +55,13 @@ $c->{render_id}->{pmcid} = sub {
         return $link;
 };
 
+$c->{render_id}->{undefined} = sub {
+        my( $session, $value, %opts ) = @_;
+	
+	return unless defined $value and $value ne "";
+	return $session->make_text( $value );
+};
+
 $c->{render_ids_with_types} = sub {
 	my( $session, $field, $values, $alllangs, $nolink, $object ) = @_;
 
@@ -72,14 +69,19 @@ $c->{render_ids_with_types} = sub {
 	foreach my $value ( @{$values} )
 	{
 		my %opts;
-		( $opts{issn_format} = $value->{id_type} ) =~ s/^issn_// if $value->{id_type} =~ /^issn_/;
-		print STDERR "id_type: ".$value->{id_type}."\n";
+		use Data::Dumper;
+		$value->{id_type} = "undefined" unless defined $value->{id_type};
         	my $render_func = $session->config( 'render_id', $value->{id_type} );
 		my $rendered_id = &$render_func( $session, $value->{id}, %opts );
 		if ( defined $rendered_id )
 		{
 			my $li = $session->make_element( "li" );
 			$li->appendChild( $rendered_id );
+			if ( EPrints::Utils::is_set( $value->{id_note} ) )
+			{
+				my $note = $session->make_text( ' (' . $value->{id_note} .')' );
+				$li->appendChild( $note );
+			}
 			$ul->appendChild( $li );
 		}
 	}

@@ -46,43 +46,38 @@ $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
 
         	my $id_id = undef;
 	        my $id_type = undef;
-		my $issn_id = undef;
-                my $issn_type = undef;
+		my $id_note = undef;
         	foreach my $id (@{$ids})
 	        {
-        	        if ( defined $id->{id_type} && defined $id->{id} && defined $idps->{$id->{id_type}} && ( !defined $id_type || !defined $idps->{$id_type} || $idps->{$id->{id_type}} > $idps->{$id_type} ) )
+			$id->{id_type} = "undefined" unless defined $id->{id_type};
+        	        if ( defined $id->{id} && defined $idps->{$id->{id_type}} && ( !defined $id_type || !defined $idps->{$id_type} || $idps->{$id->{id_type}} > $idps->{$id_type} ) )
                 	{
                         	$id_type = $id->{id_type};
 	                        $id_id = $id->{id};
+				$id_note = $id->{id_note};
         	        }
-			if ( defined $id->{id_type} && $id->{id_type} =~ /^issn/ && defined $id->{id} && defined $idps->{$id->{id_type}} && ( !defined $id_type || !defined $idps->{$issn_type} || $idps->{$id->{id_type}} > $idps->{$issn_type} ) )
+			if ( defined $id->{id} && $id->{id_type} eq "issn" )
 			{
-				$issn_type = $id->{id_type};
-				$issn_id = $id->{id};
+				my $issn = $id->{id};
+				$issn .= " (" . $id->{id_note} . ")" if defined $id->{id_note};
+				$eprint->set_value( "issn", $issn );
 			}
 
-			if ( defined $id->{id_type} && defined $id->{id} &&  $id->{id_type} eq "isbn" )
+			if ( defined $id->{id} &&  $id->{id_type} eq "isbn" )
 			{
-				$eprint->set_value( "isbn", $id->{id} );
+				my $isbn = $id->{id};
+                                $isbn .= " (" . $id->{id_note} . ")" if defined $id->{id_note};
+				$eprint->set_value( "isbn", $isbn );
 			}
 
         	}
-	        if ( defined $id_id && defined $id_type )
-        	{
-                	$eprint->set_value( "id_number", $id_type. ":" . $id_id );
-        	}
-	        else
-        	{
-                	$eprint->set_value( "id_number", undef );
-        	}
-		if ( defined $issn_id && defined $issn_type )
-                {
-                        $eprint->set_value( "issn", $issn_id );
-                }
-                else
-                {
-                        $eprint->set_value( "issn" , undef );
-                }
+	        if ( defined $id_id )
+		{
+			my $id_number = $id_id;
+			$id_number = $id_type . ":" . $id_number if defined $id_type && $id_type ne "undefined";
+			$id_number .= " (" . $id_note . ")" if defined $id_note;
+			$eprint->set_value( "id_number", $id_number );
+		}
 	}
 }, priority => 100 );
 
