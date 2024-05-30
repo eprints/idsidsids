@@ -17,6 +17,6 @@
 
 <!-- validation -->
 <epp:phrase id="validate:idsidsids:invalid_id_format"><epc:pin name="fieldname"/> has ID <epc:pin name="id_value"/> that is not a valid <epc:pin name="id_type"/>.</epp:phrase>
-<epp:phrase id="validate:datesdatesdates:duplicate_id_type"><epc:pin name="fieldname"/> contains more than one <epc:pin name="id_type"/> ID.</epp:phrase>
+<epp:phrase id="validate:idsidsids:duplicate_id_type"><epc:pin name="fieldname"/> contains more than one <epc:pin name="id_type"/> ID.</epp:phrase>
 
 </epp:phrases>
