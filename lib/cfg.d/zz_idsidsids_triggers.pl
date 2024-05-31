@@ -13,7 +13,7 @@ $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
 	# if this is an existing record, or a new record that has been imported, initialise
         # the 'ids' field first
 	my $idps = $repo->config( 'id_priorities' );
-        if( !$changed->{ids} && !$eprint->is_set( "ids" ) && $eprint->is_set( "id_number" ) )
+        if( !$changed->{ids} && !$eprint->is_set( "ids" ) && ( $eprint->is_set( "id_number" ) || $eprint->is_set( "isbn" ) || $eprint->is_set( "issn" ) ) )
         {
 		my @ids = ();
 		if ( $eprint->is_set( "id_number" ) )
