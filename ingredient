@@ -1,0 +1,22 @@
+#!/bin/bash
+d=`dirname $0`
+cd $d
+dir=`pwd`
+if [ "$1" == "make" ]; then
+	ln -sf ../../cfg/cfg.d/zz_idsidsids.pl lib/cfg.d/zz_idsidsids.pl
+	ln -sf lib/cfg.d/ 
+	ln -sf lib/static/
+	ln -sf lib/lang/
+elif [ "$1" == "unmake" ]; then
+	rm -f lib/cfg.d/zz_idsidsids.pl
+	rm cfg.d
+	rm static
+	rm lang
+else
+	echo "ingredient requires one of the following actions as an argument: make unmake"
+	exit 1
+fi
+if ls $dir/../../flavours/*/inc 1> /dev/null 2>&1; then 
+	touch $dir/../../flavours/*/inc
+fi
+exit 0

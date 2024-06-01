@@ -25,9 +25,11 @@ This plugin provides renderers for each of its ID types using third-party lookup
 EPrints 3.4+ supports ingredients.  To install IDs IDs IDs as an ingredient:
 
  1. Copy the idsidsids directory inside the ingredients (e.g. */opt/eprints3/ingredients/*) directory.
- 2. Run the *make_ingredient.sh* (e.g. *./make_ingredient.sh*).  This will make the appropriate symbolic links so IDs IDs IDs will work as an ingredient.
+ 2. Run the *ingredient make* (e.g. *./ingredient make* from this directory).  This will add the appropriate symbolic links so IDs IDs IDs will work as an ingredient.
  3. Edit flavours/*FLAVOUR_NAME*/inc and add "ingredients/idsidsids" on its own line at the end of the file.
  4. Check EPrints configuration and reload the webserver (e.g. */opt/eprints3/epadmin test && apachectl graceful*).
+
+If you want to undo step to as you don't want IDs IDs IDs made as an ingredient run: *./ingredient unmake*
 
 ## Setup ##
 
